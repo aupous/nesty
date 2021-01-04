@@ -1,5 +1,13 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm'
 import { compare } from 'bcrypt'
+import { Task } from 'src/tasks/task.entity'
 
 @Entity()
 @Unique(['username'])
@@ -13,6 +21,8 @@ export class User extends BaseEntity {
   @Column()
   password: string
 
+  @OneToMany('Task', 'user')
+  tasks!: Task[]
 
   validatePassword(password: string): Promise<boolean> {
     return compare(password, this.password)

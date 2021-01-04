@@ -1,4 +1,13 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from '../auth/user.entity'
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 
 @Entity()
 export class Task extends BaseEntity {
@@ -10,4 +19,11 @@ export class Task extends BaseEntity {
 
   @Column()
   content: string
+
+  @Column({ name: 'user_id' })
+  userId: number
+
+  @JoinColumn({ name: 'user_id' })
+  @ManyToOne('User', 'tasks')
+  user!: User
 }

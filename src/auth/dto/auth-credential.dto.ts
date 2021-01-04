@@ -1,4 +1,4 @@
-import { IsNotEmpty, Matches, Min, MinLength } from "class-validator"
+import { IsNotEmpty, Matches, Min, MinLength } from 'class-validator'
 
 export class AuthCredentialDto {
   @IsNotEmpty()
